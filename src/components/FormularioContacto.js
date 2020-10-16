@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import useForm from "react-hook-form";
 
-const FAKE_GATEWAY_URL = "https://x9wlczb4i2.execute-api.us-east-1.amazonaws.com/formularioPrueba";
+const FAKE_GATEWAY_URL = "https://mail.zoho.com/api/accounts/5945909000000008002/messages";
 const required = "This field is required";
 
 //const Formulario = props => {

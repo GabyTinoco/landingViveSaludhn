@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 class App extends React.Component {
   constructor(props) {
 	super(props);
@@ -42,7 +43,9 @@ render() {
                   </div>
                   <button type="submit" className="btn btn-primary submmit">Enviar</button>
                   </form>
+                  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfiwWUWqSkafn3xq1YZhI4snqC6QMR2Hzx8WqorjRw_lG-lMw/viewform?embedded=true" width="430" height="808" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
                 </div>
+
           </div>
           <div className="product-benefit-1-image"></div>
       </div>
@@ -64,24 +67,16 @@ render() {
 
 handleSubmit(e) {
   e.preventDefault();
-
-  fetch(' https://x9wlczb4i2.execute-api.us-east-1.amazonaws.com/formularioPrueba',{
-      method: "POST",
-      body: JSON.stringify(this.state),
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-    }).then(
-    (response) => (response.json())
-     ).then((response)=>{
-    if (response.status === 'success'){
-      alert("Message Sent."); 
-      this.resetForm()
-    }else if(response.status === 'fail'){
-      alert("Message failed to send.")
-    }
-  })
+  const api = 'https://x9wlczb4i2.execute-api.us-east-1.amazonaws.com/formularioPrueba';
+  const data = { "data" : JSON.stringify(this.state)};
+  axios
+    .post(api, data)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
 }
 
